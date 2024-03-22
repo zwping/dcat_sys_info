@@ -1,0 +1,33 @@
+{
+    "name": "zwping/dcat_sys_info",
+    "alias": "",
+    "description": "便捷展示系统&后台信息",
+    "type": "library",
+    "keywords": ["dcat-admin", "extension", "sys_info", "cpu", "memory", "hd", "phpinfo", "route_list", "env", "dependencies"],
+    "homepage": "https://github.com/zwping/dcat_sys_info",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "zwping",
+            "email": "1101558280@qq.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.1.0",
+        "dcat/laravel-admin": "~2.0",
+        "linfo/linfo": "^4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Zwping\\DcatAdmin\\SysInfo\\": "src/"
+        }
+    },
+    "extra": {
+        "dcat-admin": "Zwping\\DcatAdmin\\SysInfo\\SysInfoServiceProvider",
+        "laravel": {
+            "providers": [
+                "Zwping\\DcatAdmin\\SysInfo\\SysInfoServiceProvider"
+            ]
+        }
+    }
+}
