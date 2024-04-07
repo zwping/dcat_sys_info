@@ -165,7 +165,7 @@ CSS);
             });
             $grid->middleware()->display(function($middleware){
                 $middleware = collect($middleware)->sort();
-                $br = $middleware->filter(fn($it) => Str::length($it) > 10)->isNotEmpty() ? '<br/>' : ' ';
+                $br = $middleware->filter(fn($it) => Str::length($it) > 30)->isNotEmpty() ? '<br/>' : ' ';
                 return $middleware->map(fn($it) => "<span class='badge' style='background:". Admin::color()->warning() ."'>{$it}</span>")->join($br);
             });
 
