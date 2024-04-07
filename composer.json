@@ -23,10 +23,10 @@
         }
     },
     "extra": {
-        "dcat-admin": "Zwping\\DcatAdmin\\SysInfo\\SysInfoServiceProvider",
+        "dcat-admin": "Zwping\\DcatAdmin\\SysInfo\\DcatSysInfoServiceProvider",
         "laravel": {
             "providers": [
-                "Zwping\\DcatAdmin\\SysInfo\\SysInfoServiceProvider"
+                "Zwping\\DcatAdmin\\SysInfo\\DcatSysInfoServiceProvider"
             ]
         }
     }
