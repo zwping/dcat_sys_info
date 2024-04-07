@@ -83,7 +83,17 @@ class DcatSysInfoController extends Controller {
                 }
             });
             $grid->column('value')->copyable();
-            $grid->column('remarks')->display(fn($remarks) => implode('<br/>', $remarks));
+            $grid->column('remarks')->display(function($remarks) {
+                $_index = $this->get('_index');
+                $color = Admin::color()->gray();
+                foreach($remarks as $i => &$v) {
+                    if (Str::length($v) > 20) {
+                        Tooltip::make("._key_{$_index}_$i")->background($color)->title($v);
+                        $v = "<span style='' class='_key_{$_index}_$i'>". Str::limit($v, 20) ."<i class='feather icon-help-circle'></i></span>";
+                    }
+                }
+                return implode('<br/>', $remarks);
+            }); 
 
             $grid->model()->setData($this->getEnvData());
         });
@@ -153,7 +163,11 @@ CSS);
             $grid->action()->display(function ($uri) {
                 return preg_replace('/@.+/', '<code>$0</code>', $uri);
             });
-            $grid->middleware()->badge(Admin::color()->warning());
+            $grid->middleware()->display(function($middleware){
+                $middleware = collect($middleware)->sort();
+                $br = $middleware->filter(fn($it) => Str::length($it) > 10)->isNotEmpty() ? '<br/>' : ' ';
+                return $middleware->map(fn($it) => "<span class='badge' style='background:". Admin::color()->warning() ."'>{$it}</span>")->join($br);
+            });
 
             $grid->filter(function ($filter) {
                 $filter->disableIdFilter();
