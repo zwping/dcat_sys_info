@@ -7,9 +7,9 @@
 
 > 卡片信息已封装, 可直接在后台首页引入, 详见`DcatSysInfoController@index`
 
-![phpinfo](https://raw.githubusercontent.com/zwping/dcat_sys_info/master/screenshot/phpinfo.png)
 ![project](https://raw.githubusercontent.com/zwping/dcat_sys_info/master/screenshot/project.png)
 ![os](https://raw.githubusercontent.com/zwping/dcat_sys_info/master/screenshot/os.png)
+![phpinfo](https://raw.githubusercontent.com/zwping/dcat_sys_info/master/screenshot/phpinfo.png)
 ![env](https://raw.githubusercontent.com/zwping/dcat_sys_info/master/screenshot/env.png)
 ![route](https://raw.githubusercontent.com/zwping/dcat_sys_info/master/screenshot/route.png)
 
