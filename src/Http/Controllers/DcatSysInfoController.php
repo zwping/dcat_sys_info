@@ -127,8 +127,8 @@ class DcatSysInfoController extends Controller {
         'POST'   => 'blue',
         'PUT'    => 'yellow',
         'DELETE' => 'red',
-        'PATCH'  => 'aqua',
-        'OPTIONS'=> 'light-blue',
+        'PATCH'  => 'cyan',
+        'OPTIONS'=> 'purple',
     ];
     /** route 表格 */
     private function getRouteGrid() {
@@ -149,10 +149,13 @@ CSS);
             $grid->disableDeleteButton();
             // $grid->addTableClass(['table-striped']);
 
-            $grid->method()->map(function ($method) {
-                $colors = static::Colors;
-                return "<span class=\"label bg-{$colors[$method]}\">$method</span>";
-            })->implode('&nbsp;');
+            $colors = static::Colors;
+            $grid->method()->display(fn($method) => 
+                collect($method)->chunk(3)
+                    ->map(fn($its) => $its->map(fn($it) => "<span class=\"label bg-{$colors[$it]}\">$it</span>")
+                    ->join('&nbsp;'))
+                    ->join('<br/>')
+                );
 
             $grid->uri()->display(function ($uri) {
                 return preg_replace('/\{.+?\}/', '<code>$0</code>', $uri);
@@ -165,7 +168,7 @@ CSS);
             });
             $grid->middleware()->display(function($middleware){
                 $middleware = collect($middleware)->sort();
-                $br = $middleware->filter(fn($it) => Str::length($it) > 30)->isNotEmpty() ? '<br/>' : ' ';
+                $br = $middleware->filter(fn($it) => Str::length($it) > 30)->isNotEmpty() ? '<br/>' : '&nbsp;';
                 return $middleware->map(fn($it) => "<span class='badge' style='background:". Admin::color()->warning() ."'>{$it}</span>")->join($br);
             });
 
